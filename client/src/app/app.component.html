@@ -1,0 +1,31 @@
+<header class="topbar">
+  <a class="brand" routerLink="/" aria-label="Buddha Rental Homes home">
+    <span class="brand-mark">B</span>
+    <span>Buddha <small>RENTAL HOMES</small></span>
+  </a>
+  <nav *ngIf="auth.user() as user" aria-label="Main navigation">
+    <a routerLink="/" fragment="available-rooms" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Find rooms</a>
+    <a routerLink="/" fragment="how-it-works">How it works</a>
+    <a [routerLink]="dashboardPath" routerLinkActive="active">Dashboard</a>
+    <div class="account-menu">
+      <span>{{ user.name }} <small>{{ user.role }}</small></span>
+      <button type="button" class="nav-action" (click)="logout()">Sign out</button>
+    </div>
+  </nav>
+  <nav *ngIf="!auth.user()" aria-label="Account navigation">
+    <a routerLink="/login">Sign in</a>
+    <a class="nav-action" routerLink="/register">Create account</a>
+  </nav>
+</header>
+
+<aside class="toast" *ngIf="notifications.notice() as notice" [class.error]="notice.error" role="status">
+  <span>{{ notice.message }}</span><button type="button" aria-label="Dismiss notification" (click)="notifications.clear()">Close</button>
+</aside>
+
+<router-outlet />
+
+<footer class="footer">
+  <a class="brand" routerLink="/"><span class="brand-mark">B</span><span>Buddha <small>RENTAL HOMES</small></span></a>
+  <p>Student stays, made more thoughtful.</p>
+  <a href="mailto:hello@buddharental.com">Contact the team</a>
+</footer>
