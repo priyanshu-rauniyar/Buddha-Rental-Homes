@@ -26,7 +26,7 @@ import { NotificationService } from '../../core/services/notification.service';
           <button class="primary-button" type="submit" [disabled]="submitting">{{ submitting ? 'Please wait...' : (isRegister ? 'Create account' : 'Sign in') }}</button>
         </form>
         <p class="switch-link">{{ isRegister ? 'Already have an account?' : 'New to Buddha Rental Homes?' }} <a [routerLink]="isRegister ? '/login' : '/register'" [queryParams]="route.snapshot.queryParams">{{ isRegister ? 'Sign in' : 'Create an account' }}</a></p>
-        <details class="demo-accounts" *ngIf="!isRegister"><summary>Demo accounts</summary><p>Student: student&#64;buddharental.com / Student&#64;123</p><p>Owner: owner&#64;buddharental.com / Owner&#64;123</p><p>Admin: admin&#64;buddharental.com / Admin&#64;123</p></details>
+   
       </section>
     </main>
   `,
