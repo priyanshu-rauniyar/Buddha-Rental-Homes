@@ -19,19 +19,24 @@ import { VisitApiService } from '../../core/services/visit-api.service';
       <p class="loading" *ngIf="loading">Loading room details...</p>
       <section class="error-state" *ngIf="!loading && errorMessage"><h1>Room unavailable</h1><p>{{ errorMessage }}</p></section>
       <article class="room-detail" *ngIf="room && !loading">
-        <div class="gallery">
-          <img [src]="room.imageUrls[0] || fallbackImage" [alt]="room.title" />
-          <div class="gallery-extra" *ngIf="room.imageUrls.length > 1"><img *ngFor="let image of room.imageUrls.slice(1, 4)" [src]="image" [alt]="room.title" /></div>
-        </div>
         <div class="detail-layout">
           <section class="main-info">
+            <div class="gallery" [class.has-extra]="room.imageUrls.length > 1">
+              <img [src]="room.imageUrls[0] || fallbackImage" [alt]="room.title" />
+              <div class="gallery-extra" *ngIf="room.imageUrls.length > 1"><img *ngFor="let image of room.imageUrls.slice(1, 4)" [src]="image" [alt]="room.title" /></div>
+            </div>
             <p class="eyebrow">{{ room.city || room.location }} &middot; {{ room.roomType | titlecase }}</p>
             <h1>{{ room.title }}</h1>
             <p class="address">{{ room.address }}</p>
             <p class="description">{{ room.description }}</p>
-            <div class="features"><span *ngFor="let facility of room.facilities">{{ facility }}</span></div>
-            <h2>House rules</h2>
-            <ul><li *ngFor="let rule of room.rules">{{ rule }}</li><li *ngIf="!room.rules.length">Ask the host about house rules before visiting.</li></ul>
+            <section class="listing-section amenities" *ngIf="room.facilities.length">
+              <h2>Amenities</h2>
+              <div class="features"><span *ngFor="let facility of room.facilities">{{ facility }}</span></div>
+            </section>
+            <section class="listing-section rules">
+              <h2>House rules</h2>
+              <ul><li *ngFor="let rule of room.rules">{{ rule }}</li><li *ngIf="!room.rules.length">Ask the host about house rules before visiting.</li></ul>
+            </section>
             <section class="reviews">
               <div class="review-title"><div><p class="eyebrow">Student experiences</p><h2>Reviews</h2></div><strong>{{ averageRating | number:'1.1-1' }} / 5 <small>({{ reviewCount }})</small></strong></div>
               <form class="review-form" *ngIf="canReview" (ngSubmit)="submitReview()">
@@ -67,18 +72,22 @@ import { VisitApiService } from '../../core/services/visit-api.service';
     .loading { min-height:45vh; display:grid; place-items:center; color:var(--muted,#69756c); }
     .error-state { margin-top:50px; padding:45px; background:#fffefa; }
     .error-state h1 { font:2.4rem Georgia,serif; }
-    .gallery { display:grid; grid-template-columns:1.5fr 1fr; gap:12px; height:420px; margin:24px 0 30px; }
-    .gallery>img,.gallery-extra img { width:100%; height:100%; object-fit:cover; }
-    .gallery-extra { display:grid; grid-template-rows:repeat(3,1fr); gap:12px; min-height:0; overflow:hidden; }
+    .room-detail { margin-top:24px; }
     .detail-layout { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:48px; align-items:start; }
+    .main-info { min-width:0; }
+    .gallery { display:grid; grid-template-columns:minmax(0,1fr); gap:12px; height:420px; margin:0 0 28px; overflow:hidden; background:#e7e8df; }
+    .gallery.has-extra { grid-template-columns:minmax(0,1.5fr) minmax(180px,1fr); }
+    .gallery>img,.gallery-extra img { display:block; width:100%; height:100%; object-fit:cover; }
+    .gallery-extra { display:grid; grid-auto-rows:1fr; gap:12px; min-height:0; overflow:hidden; }
     .eyebrow { color:var(--green,#315d46); font-size:.72rem; font-weight:800; text-transform:uppercase; }
-    .main-info h1 { margin:7px 0; font:3rem Georgia,serif; }
+    .main-info h1 { margin:7px 0; font:3rem Georgia,serif; overflow-wrap:anywhere; }
     .address,.deposit,.college { color:var(--muted,#69756c); font-size:.87rem; }
-    .description { margin:25px 0; color:#515d54; line-height:1.7; }
-    .features { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 34px; }
+    .description { margin:20px 0 28px; color:#515d54; line-height:1.7; overflow-wrap:anywhere; }
+    .listing-section { padding:20px 0; border-top:1px solid var(--line,#dedfd3); }
+    .listing-section h2 { margin:0 0 14px; font:1.5rem Georgia,serif; }
+    .features { display:flex; flex-wrap:wrap; gap:8px; }
     .features span { padding:8px 10px; background:#e7ecdf; color:#315d46; font-size:.76rem; }
-    .main-info h2 { margin:25px 0 12px; font:1.5rem Georgia,serif; }
-    .main-info ul { padding-left:18px; color:#59645b; line-height:1.8; }
+    .rules ul { margin:0; padding-left:20px; color:#59645b; line-height:1.8; }
     .booking-panel { position:sticky; top:24px; padding:24px; background:var(--surface,#fffefa); border:1px solid var(--line,#dedfd3); }
     .availability { padding:6px 9px; background:#e6eddf; color:#315d46; font-size:.7rem; font-weight:800; text-transform:uppercase; }
     .rent { margin:20px 0 0; color:#244735; font-size:1.6rem; font-weight:800; }
@@ -86,7 +95,7 @@ import { VisitApiService } from '../../core/services/visit-api.service';
     .booking-panel>.primary-button { width:100%; min-height:46px; margin-top:17px; border:0; background:#315d46; color:white; font-weight:700; cursor:pointer; }
     .host { padding-top:20px; margin-top:20px; border-top:1px solid var(--line,#dedfd3); color:var(--muted,#69756c); font-size:.82rem; }
     .host strong { color:var(--ink,#202a24); }
-    .reviews { margin-top:42px; padding-top:24px; border-top:1px solid var(--line,#dedfd3); }
+    .reviews { margin-top:18px; padding-top:24px; border-top:1px solid var(--line,#dedfd3); }
     .review-title { display:flex; justify-content:space-between; align-items:end; }
     .review-title .eyebrow { margin:0 0 8px; }.review-title h2 { margin:0; }
     .review-title>strong { color:#315d46; font-size:.85rem; }.review-title small { color:var(--muted,#69756c); font-weight:500; }
@@ -100,8 +109,8 @@ import { VisitApiService } from '../../core/services/visit-api.service';
     .rating { display:block; margin-top:7px; color:#315d46; font-size:.8rem; }
     .review p { color:#59645b; font-size:.87rem; line-height:1.55; }
     .delete { padding:0; border:0; background:transparent; color:#8b4634; font-size:.77rem; cursor:pointer; }
-    @media(max-width:850px) { .gallery { height:330px; }.detail-layout { grid-template-columns:1fr; }.booking-panel { position:static; grid-row:1; }.booking-panel>.primary-button { width:auto; padding:0 18px; } }
-    @media(max-width:600px) { .room-page { padding:25px 16px 50px; }.gallery { height:255px; grid-template-columns:1fr; }.gallery-extra { display:none; }.main-info h1 { font-size:2.25rem; }.booking-panel { padding:19px; } }
+    @media(max-width:850px) { .detail-layout { grid-template-columns:minmax(0,1fr); gap:26px; }.booking-panel { position:static; grid-row:1; }.booking-panel>.primary-button { width:auto; padding:0 18px; }.gallery { height:380px; } }
+    @media(max-width:600px) { .room-page { padding:25px 16px 50px; }.gallery,.gallery.has-extra { height:255px; grid-template-columns:1fr; }.gallery-extra { display:none; }.main-info h1 { font-size:2.25rem; }.booking-panel { padding:19px; } }
   `]
 })
 export class RoomDetailPageComponent implements OnInit {
