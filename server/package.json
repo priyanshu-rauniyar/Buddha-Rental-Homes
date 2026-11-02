@@ -1,7 +1,7 @@
 {
-  "name": "buddha-rental-homes-server",
+  "name": "campusnest-server",
   "version": "1.0.0",
-  "description": "Buddha Rental Homes backend API",
+  "description": "CampusNest backend API",
   "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",

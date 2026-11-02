@@ -11,9 +11,9 @@ import { NotificationService } from '../../core/services/notification.service';
   imports: [CommonModule, FormsModule, RouterLink],
   template: `
     <main class="auth-page">
-      <section class="auth-art"><p class="eyebrow">Buddha Rental Homes</p><h1>{{ isRegister ? 'Find your place in a new city.' : 'Good to have you back.' }}</h1><p>Student stays, made more thoughtful.</p></section>
+      <section class="auth-art"><p class="eyebrow">CampusNest</p><h1>{{ isRegister ? 'Find your place in a new city.' : 'Good to have you back.' }}</h1><p>Student stays, made more thoughtful.</p></section>
       <section class="auth-panel">
-        <p class="back-link">Buddha Rental Homes account access</p>
+        <p class="back-link">CampusNest account access</p>
         <p class="eyebrow">{{ isRegister ? 'Create an account' : 'Account access' }}</p>
         <h2>{{ isRegister ? 'Start your next chapter' : 'Welcome back' }}</h2>
         <p class="muted">{{ isRegister ? 'Create a student account to find a stay, or an owner account to list your room.' : 'Sign in to browse rooms, request visits, and open your role dashboard.' }}</p>
@@ -25,7 +25,7 @@ import { NotificationService } from '../../core/services/notification.service';
           <p class="error" *ngIf="errorMessage" role="alert">{{ errorMessage }}</p>
           <button class="primary-button" type="submit" [disabled]="submitting">{{ submitting ? 'Please wait...' : (isRegister ? 'Create account' : 'Sign in') }}</button>
         </form>
-        <p class="switch-link">{{ isRegister ? 'Already have an account?' : 'New to Buddha Rental Homes?' }} <a [routerLink]="isRegister ? '/login' : '/register'" [queryParams]="route.snapshot.queryParams">{{ isRegister ? 'Sign in' : 'Create an account' }}</a></p>
+        <p class="switch-link">{{ isRegister ? 'Already have an account?' : 'New to CampusNest?' }} <a [routerLink]="isRegister ? '/login' : '/register'" [queryParams]="route.snapshot.queryParams">{{ isRegister ? 'Sign in' : 'Create an account' }}</a></p>
    
       </section>
     </main>

@@ -1,7 +1,7 @@
 <header class="topbar">
-  <a class="brand" routerLink="/" aria-label="Buddha Rental Homes home">
-    <span class="brand-mark">B</span>
-    <span>Buddha <small>RENTAL HOMES</small></span>
+  <a class="brand" routerLink="/" aria-label="CampusNest home">
+    <span class="brand-mark">C</span>
+    <span>CampusNest</span>
   </a>
   <nav *ngIf="auth.user() as user" aria-label="Main navigation">
     <a routerLink="/" fragment="available-rooms" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Find rooms</a>
@@ -25,7 +25,7 @@
 <router-outlet />
 
 <footer class="footer">
-  <a class="brand" routerLink="/"><span class="brand-mark">B</span><span>Buddha <small>RENTAL HOMES</small></span></a>
+  <a class="brand" routerLink="/"><span class="brand-mark">C</span><span>CampusNest</span></a>
   <p>Student stays, made more thoughtful.</p>
-  <a href="mailto:hello@buddharental.com">Contact the team</a>
+  <a href="mailto:hello@campusnest.com">Contact the team</a>
 </footer>

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "buddha-rental-homes-client": {
+    "campusnest-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/buddha-rental-homes-client",
+            "outputPath": "dist/campusnest-client",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -52,10 +52,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "buddha-rental-homes-client:build:production"
+              "buildTarget": "campusnest-client:build:production"
             },
             "development": {
-              "buildTarget": "buddha-rental-homes-client:build:development"
+              "buildTarget": "campusnest-client:build:development"
             }
           },
           "defaultConfiguration": "development"

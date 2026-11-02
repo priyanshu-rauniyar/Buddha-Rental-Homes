@@ -11,7 +11,7 @@
 
 ## Student flow
 
-Sign in with `student@buddharental.com` / `Student@123`.
+Sign in with `student@campusnest.com` / `Student@123`.
 
 1. Search rooms by location, rent ceiling, and room type; test next/previous when multiple pages exist.
 2. Save a listing, confirm it appears under Saved rooms, then unsave it.
@@ -23,7 +23,7 @@ Sign in with `student@buddharental.com` / `Student@123`.
 
 ## Owner flow
 
-Sign in with `owner@buddharental.com` / `Owner@123`.
+Sign in with `owner@campusnest.com` / `Owner@123`.
 
 1. Submit a room listing. It should appear in Submitted listings with Pending status and stay hidden from public search.
 2. Sign in as admin and approve the listing.
@@ -34,7 +34,7 @@ Sign in with `owner@buddharental.com` / `Owner@123`.
 
 ## Admin flow
 
-Sign in with `admin@buddharental.com` / `Admin@123`.
+Sign in with `admin@campusnest.com` / `Admin@123`.
 
 1. Review a pending room and approve it; confirm it appears in public search.
 2. Reject another pending room; confirm it remains unavailable publicly.

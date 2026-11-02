@@ -30,7 +30,7 @@ import { RoomCardComponent } from '../../shared/room-card/room-card.component';
       <div class="hero-image" role="img" aria-label="Bright, welcoming student accommodation"><div><span>Find your next chapter</span><strong>Made for student life.</strong></div></div>
     </section>
 
-    <section class="benefits" aria-label="Buddha Rental benefits"><span>Thoughtful stays</span><span>Clear monthly costs</span><span>Hosts you can reach</span></section>
+    <section class="benefits" aria-label="CampusNest benefits"><span>Thoughtful stays</span><span>Clear monthly costs</span><span>Hosts you can reach</span></section>
 
     <section class="listings" id="available-rooms">
       <div class="section-heading"><div><p class="eyebrow">Your search starts here</p><h2>Rooms worth coming home to</h2></div><span>{{ total }} listings</span></div>

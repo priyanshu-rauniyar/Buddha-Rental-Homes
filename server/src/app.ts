@@ -29,7 +29,7 @@ app.use(
 app.get('/api/health', (_req, res) => {
   res.json({
     status: 'ok',
-    service: 'Buddha Rental Homes API',
+    service: 'CampusNest API',
     timestamp: new Date().toISOString(),
   });
 });

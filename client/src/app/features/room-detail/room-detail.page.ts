@@ -193,6 +193,7 @@ export class RoomDetailPageComponent implements OnInit {
       error: () => undefined,
     });
   }
+  
 
   private loadRequests(): void {
     if (!this.user) return;

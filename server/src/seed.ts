@@ -6,22 +6,22 @@ import Room from './models/Room.js';
 async function seed() {
   await connectDatabase();
 
-  const adminExists = await User.findOne({ email: 'admin@buddharental.com' });
+  const adminExists = await User.findOne({ email: 'admin@campusnest.com' });
   if (!adminExists) {
     await User.create({
       name: 'Admin User',
-      email: 'admin@buddharental.com',
+      email: 'admin@campusnest.com',
       password: await bcrypt.hash('Admin@123', 10),
       role: 'admin',
       isVerified: true,
     });
   }
 
-  let owner = await User.findOne({ email: 'owner@buddharental.com' });
+  let owner = await User.findOne({ email: 'owner@campusnest.com' });
   if (!owner) {
     owner = await User.create({
       name: 'Owner One',
-      email: 'owner@buddharental.com',
+      email: 'owner@campusnest.com',
       password: await bcrypt.hash('Owner@123', 10),
       role: 'owner',
       isVerified: true,
@@ -50,11 +50,11 @@ async function seed() {
     });
   }
 
-  const studentExists = await User.findOne({ email: 'student@buddharental.com' });
+  const studentExists = await User.findOne({ email: 'student@campusnest.com' });
   if (!studentExists) {
     await User.create({
       name: 'Student One',
-      email: 'student@buddharental.com',
+      email: 'student@campusnest.com',
       password: await bcrypt.hash('Student@123', 10),
       role: 'student',
       isVerified: true,
