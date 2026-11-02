@@ -7,6 +7,13 @@ import authRoutes from './routes/authRoutes.js';
 import roomRoutes from './routes/roomRoutes.js';
 
 const app = express();
+app.get('/', (_req, res) => {
+  res.status(200).json({
+    message: 'Welcome to CampusNest API',
+    status: 'running',
+    health: '/api/health',
+  });
+});
 
 app.use(
   cors({
